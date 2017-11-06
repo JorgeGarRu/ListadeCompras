@@ -1,0 +1,28 @@
+﻿@model List<ListaDeCompras.Models.ListaCompra> 
+@{
+    ViewBag.Title = "Index";
+}
+
+<h3 class="jumbotron text-center" style="background-color:black;color:white;" >
+    Lista de Compras
+    <a class="btn btn-xs btn-primary" href="~/Home/Crear/">Crear Producto</a>
+    </h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="width:200px;">Producto</th>
+            <th style="width:200px;">Comprado</th>
+    </thead>
+    <tbody>
+        @foreach (ListaDeCompras.Models.ListaCompra compra in Model)
+        {
+            <tr>
+                <td>@(compra.producto)</td>
+                <td>@(compra.comprado)</td>
+                <td>
+                    <a class="btn btn-xs btn-info" href="~/Home/Ver/@compra.id">Ver</a>
+                    <a class="btn btn-xs btn-primary" href="~/home/Modificar/@compra.id">Editar</a>
+                    <a onclick="return confirm('¿Deseas eliminar esta tarea?');" class="btn btn-xs btn-danger" href="~/Home/eliminar/@compra.id">Eliminar</a>
+                </td>
+            </tr>
+        }
