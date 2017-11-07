@@ -43,7 +43,7 @@ namespace ListaDeCompras.Models
 
             }
 
-        public static ListaCompra DevuelveProducto(int id)
+        public static ListaCompra DevuelveProducto(int id)//metodo que devuelve un producto dado su id
         {
             ListaCompra compra = null;
 
@@ -59,7 +59,7 @@ namespace ListaDeCompras.Models
             return compra;
         }
 
-        public void Guardar()
+        public void Guardar()//metodo para guardar un producto
         {
             bool crear = this.id == 0;//sera verdadero cuando la id sea 0
             try
@@ -81,6 +81,29 @@ namespace ListaDeCompras.Models
 
                 throw;
             }
+        }
+
+        public void Eliminar()//metodo para eliminar un producto
+        {
+            try
+            {
+                ListaCompraContext context = new ListaCompraContext();
+                context.Entry(this).State = System.Data.Entity.EntityState.Deleted;//borramos el producto
+                context.SaveChanges();//guardamos los cambios
+
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+        }
+
+        public ListaCompra()//metodo para crear una compra por defecto
+        {
+            this.id = 0;
+            this.producto = "";
+            this.comprado = false;
         }
     }
 }

@@ -12,16 +12,16 @@ namespace ListaDeCompras.Controllers
         // GET: Home
         public ActionResult Index()//pagina de inicio
         {
-            List<Models.ListaCompra> compras = Models.ListaCompra.listar();//en la variable compras, le pasamos el metodo listar, creado en "listaCompra.cs"
-            return View(compras);//y lo metemos en el return
+            List<Models.ListaCompra> compra = Models.ListaCompra.listar();//en la variable compras, le pasamos el metodo listar, creado en "listaCompra.cs"
+            return View(compra);//y lo metemos en el return para que se vea por pantalla
         }
 
         public ActionResult Ver(int id)//pagina de vista de un producto
         {
-            Models.ListaCompra producto = Models.ListaCompra.DevuelveProducto(id);//metemos en la variable producto, el producto que tenga la id dada
-            if (producto != null)//si el producto no es nulo...
+            Models.ListaCompra compra = Models.ListaCompra.DevuelveProducto(id);//metemos en la variable producto, el producto que tenga la id dada
+            if (compra != null)//si el producto no es nulo...
             {
-                return View(producto);//devolvemos el producto
+                return View(compra);//devolvemos el producto
             }
             else//sino...
             {
@@ -32,32 +32,48 @@ namespace ListaDeCompras.Controllers
 
         public ActionResult Crear()//pagina de creacion de un producto
         {
-            Models.ListaCompra producto = new Models.ListaCompra();
-            return View("~/Views/Home/ListaComprasForm.cshtml",producto);
+            Models.ListaCompra compra = new Models.ListaCompra();
+            return View("~/Views/Home/ListaComprasForm.cshtml", compra);//redireccionamos al formulario de dicha compra
         }
 
         public ActionResult Modificar(int id = 0)
         {
-            Models.ListaCompra producto = Models.ListaCompra.DevuelveProducto(id);
+            Models.ListaCompra compra = Models.ListaCompra.DevuelveProducto(id);//en la variable compra metemos el producto que tenga la id dada
 
-            if (producto == null)//si el producto que queremos modificar no existe
+            if (compra == null)//si el producto que queremos modificar no existe
             {
                 return View("~/Views/Home/Crear");//lo mandamos a la pagina de crear
 
             }
             else
             {
-                return View("~/Views/Home/ListaComprasForm.cshtml", producto);//si no, lo mandamos a la pagina de modificar de dicho producto
+                return View("~/Views/Home/ListaComprasForm.cshtml", compra);//si no, lo mandamos a la pagina de modificar de dicho producto
             }
 
         }
 
-        public ActionResult Guardar(Models.ListaCompra producto)
+        public ActionResult Guardar(Models.ListaCompra compra)
         {
             //Guardar esos datos en la base de datos
-            producto.Guardar();
-            //Redireccionar a una vista
-            return Redirect("~/Home/Ver/" + producto.id);//redirect significa a que url lo vamos a redireccionar
+          
+                compra.Guardar();
+                return Redirect("~/Home/Index/"+compra.id);//redireccionamos a la vista de dicha compra
+         
+
+
+        }
+
+        public ActionResult Eliminar(int id = 0)
+        {
+            //eliminar la entrada si existe
+           Models.ListaCompra compra = Models.ListaCompra.DevuelveProducto(id);
+            if (compra!= null)
+            {
+                //Borrar
+                compra.Eliminar();
+            }
+            //redireccionar
+            return Redirect("~/Home/Index");
         }
     }
 }

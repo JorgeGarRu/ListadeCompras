@@ -11,9 +11,14 @@
         <dl class="dl-horizontal">
             <dt>Producto:</dt>
             <dd>@Model.producto</dd>
-            <dt>Comprado:</dt>
-            <dd>@(Model.comprado)</dd>
-           
-        </dl>
+            <dt>Comprado:  </dt>
+            <div class="form-group">
+                @Html.CheckBoxFor(x => x.comprado)
+
+                
+</div>
+
+</dl>
     </div>
+    <a class="btn btn-xs btn-primary" href="~/home/Index">Volver</a>
 </div>
