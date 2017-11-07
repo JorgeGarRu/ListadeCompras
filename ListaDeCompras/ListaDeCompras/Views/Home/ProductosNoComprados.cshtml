@@ -1,26 +1,33 @@
-﻿@model List<ListaDeCompras.Models.ListaCompra> 
+﻿
+@model List<ListaDeCompras.Models.ListaCompra>
 @{
     ViewBag.Title = "Index";
 }
 
-<h3 class="jumbotron text-center" style="background-color:black;color:white;" >
+<h3 class="jumbotron text-center" style="background-color:black;color:white;">
     Lista de Compras
     <a class="btn btn-primary btn-primary" href="~/Home/Crear/">Crear Producto</a><!--boton de crear producto que nos mande a la accion de "Crear"-->
-    <a class="btn btn-xs btn-success" href="~/Home/ProductosComprados/">Productos Comprados</a>
-    <a class="btn btn-xs btn-danger" href="~/Home/ProductosNoComprados/">Productos No Comprados</a>
-    </h3> <!--Encabezado-->
-<table class="table"> <!--Se crea una tabla..-->
-    <thead> <!--Los encabezados de la tabla seran...-->
+    <center>
+        <div>
+            <a class="btn btn-xs btn-primary" href="~/home/Index">Volver</a>
+        </div>
+    </center>
+</h3> <!--Encabezado-->
+<table class="table">
+    <!--Se crea una tabla..-->
+    <thead>
+        <!--Los encabezados de la tabla seran...-->
         <tr>
             <th style="width:200px;">Producto</th>
             <th style="width:200px;">Comprado</th>
     </thead>
-    <tbody><!--Los datos de la tabla...-->
+    <tbody>
+        <!--Los datos de la tabla...-->
         @foreach (ListaDeCompras.Models.ListaCompra compra in Model) //Por cada compra que tengamos en la base de datos..
         {
             <tr>
                 <td>@(compra.producto)</td> <!--debajo del primer encabezado irá el nombre del producto-->
-                <td>@(compra.comprado ? "Sí":"No")</td><!--debajo del segundo encabezado ira si está comprado o no...-->
+                <td>@(compra.comprado ? "Sí" : "No")</td><!--debajo del segundo encabezado ira si está comprado o no...-->
                 <td>
                     <a class="btn btn-xs btn-info" href="~/Home/Ver/@compra.id">Ver</a><!--ponemos un boton de ver que nos mande a la vista "Ver" de cada compra-->
                     <a class="btn btn-xs btn-primary" href="~/home/Modificar/@compra.id">Editar</a><!--ponemos un boton de editar que nos mande a la accion "Modificar" de cada compra-->
@@ -28,5 +35,5 @@
                 </td>
             </tr>
         }
-        </tbody>
-    </table>
+    </tbody>
+</table>

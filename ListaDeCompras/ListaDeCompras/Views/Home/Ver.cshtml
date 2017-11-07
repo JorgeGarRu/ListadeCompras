@@ -1,24 +1,26 @@
 ﻿@model ListaDeCompras.Models.ListaCompra
+    <!--Importamos el modelo-->
 @{
-    ViewBag.Title = "Ver";
+    ViewBag.Title = "Ver"; //para que en la pestaña de la web salga este nombre
 }
 
-<h2>Producto</h2>
+<h2>Tu Compra</h2>
 
 <div class="panel panel-default">
     <div class="panel-heading">Información del producto</div>
     <div class="panel-body">
         <dl class="dl-horizontal">
-            <dt>Producto:</dt>
-            <dd>@Model.producto</dd>
-            <dt>Comprado:  </dt>
-            <div class="form-group">
-                @Html.CheckBoxFor(x => x.comprado)
+            <dt>Producto:</dt> <!--Etiqueta-->
+            <dd>@Model.producto</dd><!--Valor de la etiqueta anterior-->
+            <dt>Comprado:</dt>
+       
+            <dd class="form-group">
+                @Html.CheckBoxFor(x => x.comprado) 
 
                 
-</div>
+</dd>
+        </dl> 
 
-</dl>
     </div>
-    <a class="btn btn-xs btn-primary" href="~/home/Index">Volver</a>
+    <center><a class="btn btn-xs btn-primary" href="~/home/Index">Volver</a></center>
 </div>

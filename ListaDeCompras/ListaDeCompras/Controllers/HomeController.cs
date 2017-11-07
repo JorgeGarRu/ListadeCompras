@@ -16,6 +16,18 @@ namespace ListaDeCompras.Controllers
             return View(compra);//y lo metemos en el return para que se vea por pantalla
         }
 
+        public ActionResult ProductosComprados()
+        {
+            List<Models.ListaCompra> compra = Models.ListaCompra.ListarProductosComprados();//en la variable compras, le pasamos el metodo listar, creado en "listaCompra.cs"
+            return View(compra);//y lo metemos en el return para que se vea por pantalla
+        }
+
+        public ActionResult ProductosNoComprados()
+        {
+            List<Models.ListaCompra> compra = Models.ListaCompra.ListarProductosNoComprados();//en la variable compras, le pasamos el metodo listar, creado en "listaCompra.cs"
+            return View(compra);//y lo metemos en el return para que se vea por pantalla
+        }
+
         public ActionResult Ver(int id)//pagina de vista de un producto
         {
             Models.ListaCompra compra = Models.ListaCompra.DevuelveProducto(id);//metemos en la variable producto, el producto que tenga la id dada

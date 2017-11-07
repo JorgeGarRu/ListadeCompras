@@ -5,10 +5,10 @@
 
 <ol class="breadcrumb"><!--Cabecera-->
     <li><a href="~/">Página de Inicio</a></li><!--Hipervinculo que nos mande a la pagina de inicio-->
-    <li class="active">@(Model.id > 0 ? Model.producto : "Nuevo producto")</li>
+    <li class="active">@(Model.id > 0 ? Model.producto : "Nuevo producto")</li><!--Si la id de la compra es mayor que 0, en la cabecera aperecerá la etiqueta del nombre del producto, sino, pondrá "NUevo Producto"-->
 </ol>
 
-@using (Html.BeginForm("Guardar", "Home", FormMethod.Post, new { id = "frm-producto" }))
+@using (Html.BeginForm("Guardar", "Home", FormMethod.Post, new { id = "frm-producto" })) //Comenzamos el formulario que tendrá la accion de Guardar
 {
     @Html.HiddenFor(x => x.id)
     <div class="panel panel-default">

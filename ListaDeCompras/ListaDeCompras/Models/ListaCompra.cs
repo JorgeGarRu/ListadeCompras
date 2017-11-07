@@ -31,7 +31,7 @@ namespace ListaDeCompras.Models
             try
             {
                 ListaCompraContext context = new ListaCompraContext();
-                compra = context.ListaCompra.ToList();//en la lista compra, metemos la lista de la tabla
+                compra = context.ListaCompra.OrderBy(x => x.producto).ToList();//en la lista compra, metemos la lista de la tabla
             }
             catch (Exception e)
             {
@@ -57,6 +57,44 @@ namespace ListaDeCompras.Models
                 throw;
             }
             return compra;
+        }
+
+        public static List<ListaCompra> ListarProductosComprados()
+        {
+            List<ListaCompra> compra = new List<ListaCompra>();
+
+            try
+            {
+                ListaCompraContext context = new ListaCompraContext();
+                compra = context.ListaCompra.Where(x => x.comprado==true).OrderBy(x => x.producto).ToList();//en la lista compra, metemos la lista de la tabla
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+            return compra;
+
+        }
+
+        public static List<ListaCompra> ListarProductosNoComprados()
+        {
+            List<ListaCompra> compra = new List<ListaCompra>();
+
+            try
+            {
+                ListaCompraContext context = new ListaCompraContext();
+                compra = context.ListaCompra.Where(x => x.comprado == false).OrderBy(x=>x.producto).ToList();//en la lista compra, metemos la lista de la tabla
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+            return compra;
+
         }
 
         public void Guardar()//metodo para guardar un producto
